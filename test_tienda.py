@@ -23,13 +23,15 @@ def test_login_fallido(driver):
     assert "locked out" in login.obtener_error()
 
 
+
 def test_login_exitoso(driver):
     """Comprueba el acceso de un usuario válido."""
-    driver.get("https://saucedemo.com")
+    driver.get("https://www.saucedemo.com")
     login = LoginPage(driver)
 
     login.ingresar_credenciales("standard_user", "secret_sauce")
     login.click_login()
 
-    # Fallo controlado para comprobar la captura de pantalla de conftest.py.
-    assert "url_inexistente.html" in driver.current_url
+    # Comprueba que el usuario accedió correctamente.
+    assert "inventory.html" in driver.current_url
+
